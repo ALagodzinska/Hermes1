@@ -1,0 +1,38 @@
+﻿@model List<HermesChat.Models.UsersModel>
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>UsersModel</h4>
+    <hr />
+    
+        <ul class="col-sm-2">
+            @foreach (var item in Model)
+            {
+               <li>item.UserName</li>
+            }
+            
+        </ul>
+
+        @*<dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.ProfileImg)
+            </dd>*@
+    
+</div>
+@*@if (Model != null)
+{
+    foreach (var item in Model)
+    {
+        <tr id="row-@item.UserName">
+            <td>
+                @Html.DisplayFor(modelItem => item.UserName)
+            </td>
+        </tr>
+
+        @Html.ActionLink("Details", "Details", new { id = item.UserName })
+    }
+*@

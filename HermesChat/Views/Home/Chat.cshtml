@@ -1,0 +1,152 @@
+﻿@{
+    ViewData["Title"] = "Chat";
+}
+<header>
+    <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+        <div class="container-fluid">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                <ul class="navbar-nav flex-grow-1">
+                </ul>
+                <partial name="_LoginPartial" />
+            </div>
+        </div>
+    </nav>
+</header>
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+<div class="container bootstrap snippets bootdey.com">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box">
+                <div class="chat-room">
+                    <aside class="kiri-side">
+                        <div class="user-head">
+                            <i class="fa fa-comments-o"></i>
+                            <h3>CHAT ROOMS</h3>
+                        </div>
+                        <button class="room-button" onclick="openForm()" id="btnPrivateGroup" href="#lobby.html">
+                            <h4>
+                                <strong>
+                                    + Create a room
+                                </strong>
+                            </h4>
+                        </button>
+
+                        <div>
+                            <ul id="room-list" class="chat-available-user chat-list chat-user"></ul>
+                        </div>
+
+                        <div class="form-popup" id="myForm">
+                            <div>
+                                <form action="/action_page.php" class="form-container">
+                                    <h1>Create a room</h1>
+
+                                    <label for="room"><b>Room name</b></label>
+                                    <input type="text" placeholder="Room name" name="room name" id="room" required>
+
+                                    <button type="submit" class="btn" id="joinButton">Join room</button>
+                                    <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
+                                </form>
+                            </div>
+                        </div>
+
+                        <script>
+                            function openForm() {
+                              document.getElementById("myForm").style.display = "block";
+                            }
+
+                            function closeForm() {
+                              document.getElementById("myForm").style.display = "none";
+                            }
+                        </script>
+
+                        <footer>
+                            <div class="container">
+                                <div class="row">&nbsp;</div>
+                                <div class="row">
+                                    <div class="col-4" id="userInput">@User.Identity?.Name</div>
+                                </div>
+                            </div>
+                        </footer>
+                        </ul>
+                    </aside>
+                    <aside class="tengah-side">
+                        <div class="chat-room-head">
+                            @*<div><h5><ul id="room-list"></ul></h5></div>*@
+                        </div>
+                        <div class="card my-1 msgcard">
+                            <div @*id="messages_container"*@ class="chat-log">
+                                <div class="chat-log_item chat-log_item-own z-depth-0">
+                                    <div class="row justify-content-end mx-1 d-flex">
+                                        <div class="col-auto px-0">
+                                        </div>
+                                        <div class="col-auto px-0">
+                                        </div>
+                                    </div>
+                                    <div class="chat-log_message" id="messagesList">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-6">
+                                <ul id="messagesList"></ul>
+                            </div>
+                        </div>
+                        <div class="chat-body">
+                            <div class="first-part odd"></div>
+                            <div class="second-part"></div>
+                            <div class="third-part"></div>
+                        </div>
+                        <div class="chat-body">
+                            <div class="first-part"></div>
+                            <div class="second-part"></div>
+                            <div class="third-part"></div>
+                        </div>
+                        <footer>
+                            <div class="row">
+                            </div>
+                            <div class="chat-txt">
+                                <div class="card-footer border-0 bottom-rounded z-depth-0" style="background-color: #97E3C2">
+                                    <div class="row">
+                                        <div class="col col-md-10 col-lg-9 mx-auto">
+                                            <div class="row d-flex justify-content-center">
+                                                <div class="col-12 col-md-9 align-self-center my-0">
+                                                    <div class="row d-flex align-self-center justify-content-center">
+                                                        <div class="col-12 d-flex">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-12 col-md-3 d-flex align-self-center justify-content-center justify-content-md-end my-0">
+                                                    <div class="md-form my-1">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <input type="text" onfocus="this.value=''" placeholder="Type something..." class="form-control" name="message input" id="messageInput" required>
+                            </div>
+                            <button onClick="scrollDown()" type="button" onclick="document.getElementById('messageInput').value = ''" id="sendButton" class="btn btn-success">Send</button>
+                        </footer>
+                    </aside>
+                    <aside class="kanan-side">
+                        <div class="user-head">
+                            <h4 class="pull-left">Chat users</h4>
+                        </div>
+                        <div>
+                            <ul id="user-list" class="chat-available-user chat-list chat-user"></ul>
+                        </div>
+                    </aside>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="~/js/signalr/dist/browser/signalr.js"></script>
+<script src="~/js/chat.js"></script>
+
